@@ -97,7 +97,7 @@
   .btn.ghost { background: transparent; color: var(--hero-fg); border-color: var(--hero-line); }
   .btn.ghost:hover { border-color: var(--hero-fg); }
   .card-id { background: rgba(255, 255, 255, .06); border: 1px solid var(--hero-line); border-radius: 24px; padding: 26px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-  .avatar { width: 96px; height: 96px; border-radius: 28px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 38px; color: #fff; background: linear-gradient(135deg, var(--accent), #FFB067); }
+  .avatar { width: 96px; height: 96px; border-radius: 28px; object-fit: cover; object-position: 50% 18%; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 38px; color: #fff; background: linear-gradient(135deg, var(--accent), #FFB067); }
   .card-id h2 { margin-top: 18px; font-size: 1.5rem; font-weight: 700; }
   .card-id p { color: var(--hero-muted); font-size: 15px; margin-top: 4px; }
   .facts { margin: 20px 0 0; display: grid; gap: 0; border-top: 1px solid var(--hero-line); }
@@ -287,7 +287,7 @@
         </div>
       </div>
       <aside class="card-id" aria-label="At a glance">
-        <div class="avatar" aria-hidden="true">OO</div>
+        <img class="avatar" src="photo.jpg" alt="Portrait of Opeyemi Oladosu" width="96" height="96">
         <h2>Opeyemi Oladosu</h2>
         <p>Lagos, Nigeria</p>
         <dl class="facts">
