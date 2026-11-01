@@ -247,6 +247,32 @@
     .track, .status b { animation: none; }
     .btn, .item, .venture { transition: none; }
   }
+
+  /* Voices: testimonials */
+  .voices { display: grid; grid-template-columns: 1.55fr 1fr; gap: 20px; align-items: stretch; }
+  .vstage { position: relative; overflow: hidden; border-radius: 28px; padding: clamp(28px, 4vw, 52px); background: var(--hero-bg); color: var(--hero-fg); min-height: 360px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow); }
+  .vstage::before { content: "\201C"; position: absolute; right: 22px; top: -34px; font-family: var(--display); font-weight: 800; font-size: 280px; line-height: 1; color: var(--accent); opacity: .22; pointer-events: none; }
+  .vstage::after { content: ""; position: absolute; left: -80px; bottom: -120px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(47, 211, 164, .25), transparent 70%); pointer-events: none; }
+  .vquote { position: relative; z-index: 1; margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.85rem); line-height: 1.35; letter-spacing: -.01em; transition: opacity .35s ease, transform .35s ease; }
+  .vquote.swap { opacity: 0; transform: translateY(8px); }
+  .vwho { position: relative; z-index: 1; display: flex; align-items: center; gap: 14px; margin-top: 28px; transition: opacity .35s ease; }
+  .vwho.swap { opacity: 0; }
+  .vav { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 20px; color: #fff; background: linear-gradient(135deg, var(--accent), #FFB067); flex: none; }
+  .vwho strong { display: block; font-family: var(--display); font-size: 18px; }
+  .vwho div span { color: var(--hero-muted); font-size: 15px; }
+  .vtag { position: relative; z-index: 1; align-self: flex-start; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mint); border: 1px solid var(--hero-line); border-radius: 999px; padding: 6px 14px; margin-bottom: 22px; }
+  .vbar { position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); z-index: 2; }
+  .vbar.run { animation: vrun var(--vdur, 9s) linear forwards; }
+  @keyframes vrun { to { transform: scaleX(1); } }
+  .vlist { display: grid; gap: 12px; align-content: stretch; }
+  .vtab { text-align: left; font: inherit; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+  .vtab:hover { transform: translateX(4px); border-color: var(--accent); }
+  .vtab[aria-selected="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232, 80, 31, .18), var(--shadow); }
+  .vtab .vav { width: 44px; height: 44px; border-radius: 13px; font-size: 17px; }
+  .vtab b { display: block; font-family: var(--display); font-size: 16px; }
+  .vtab small { color: var(--muted); font-size: 14px; }
+  @media (max-width: 860px) { .voices { grid-template-columns: 1fr; } .vstage { min-height: 320px; } .vstage::before { font-size: 200px; } }
+  @media (prefers-reduced-motion: reduce) { .vquote, .vwho { transition: none; } .vbar.run { animation: none; } }
 </style>
 </head>
 <body>
@@ -263,6 +289,7 @@
       <a href="#journey" data-s="journey">Journey</a>
       <a href="#ventures" data-s="ventures">Ventures</a>
       <a href="#skills" data-s="skills">Skills</a>
+      <a href="#voices" data-s="voices">Voices</a>
       <a href="#contact" data-s="contact" class="keep">Contact</a>
       <button class="theme" id="theme" type="button" aria-label="Switch colour theme">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -475,6 +502,18 @@
       </div>
     </section>
 
+    <section id="voices">
+      <div class="sec-title"><div><p class="eyebrow">Voices</p><h2>What colleagues say</h2></div><p>Shared by colleagues at Lidya.</p></div>
+      <div class="voices">
+        <div class="vstage" id="vpanel" role="tabpanel" aria-labelledby="vt0" aria-live="polite">
+          <div><span class="vtag" id="vtag">Adaptable</span><blockquote class="vquote" id="vquote">&ldquo;Opeyemi is able to make a difference wherever he goes. Thank you for all the work you did at Lidya. There were a lot of challenges, but Ope took it like a good sport, and he proved that he can take on any challenge that comes his way.&rdquo;</blockquote></div>
+          <div class="vwho" id="vwho"><span class="vav" id="vav" aria-hidden="true">I</span><div><strong id="vname">Itunu</strong><span id="vrole">Line Manager, Lidya</span></div></div>
+          <div class="vbar" id="vbar"></div>
+        </div>
+        <div class="vlist" role="tablist" aria-label="Colleagues" aria-orientation="vertical"><button class="vtab" role="tab" id="vt0" aria-selected="true" aria-controls="vpanel" tabindex="0" data-i="0"><span class="vav" aria-hidden="true">I</span><span><b>Itunu</b><small>Line Manager, Lidya</small></span></button><button class="vtab" role="tab" id="vt1" aria-selected="false" aria-controls="vpanel" tabindex="-1" data-i="1"><span class="vav" aria-hidden="true">O</span><span><b>Olasupo</b><small>Data Scientist, Lidya</small></span></button><button class="vtab" role="tab" id="vt2" aria-selected="false" aria-controls="vpanel" tabindex="-1" data-i="2"><span class="vav" aria-hidden="true">A</span><span><b>Abimbola</b><small>Collection Officer, Lidya</small></span></button><button class="vtab" role="tab" id="vt3" aria-selected="false" aria-controls="vpanel" tabindex="-1" data-i="3"><span class="vav" aria-hidden="true">O</span><span><b>Obinna</b><small>HR Manager, Lidya</small></span></button></div>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="contact">
         <p class="eyebrow" style="color:var(--hero-muted)">Contact</p>
@@ -630,6 +669,46 @@
     }
     if (!reduce) loop();
   }
+})();
+</script>
+<script>
+(function () {
+  var V = [{"n": "Itunu", "r": "Line Manager, Lidya", "t": "Adaptable", "q": "Opeyemi is able to make a difference wherever he goes. Thank you for all the work you did at Lidya. There were a lot of challenges, but Ope took it like a good sport, and he proved that he can take on any challenge that comes his way."}, {"n": "Olasupo", "r": "Data Scientist, Lidya", "t": "Temperament", "q": "I like his demeanour, and his temperament will take him a long way."}, {"n": "Abimbola", "r": "Collection Officer, Lidya", "t": "Fast learner", "q": "He is a fast learner, and it will help him in the long run in his career."}, {"n": "Obinna", "r": "HR Manager, Lidya", "t": "Composure", "q": "He stays calm in rocky situations, and he is a fast learner."}];
+  var tabs = [].slice.call(document.querySelectorAll('.vtab'));
+  var q = document.getElementById('vquote'), who = document.getElementById('vwho'), bar = document.getElementById('vbar'), stage = document.getElementById('vpanel');
+  var cur = 0, timer = null, paused = false, still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(i, user) {
+    cur = i; var d = V[i];
+    q.classList.add('swap'); who.classList.add('swap');
+    setTimeout(function () {
+      q.textContent = '\u201C' + d.q + '\u201D';
+      document.getElementById('vtag').textContent = d.t;
+      document.getElementById('vname').textContent = d.n;
+      document.getElementById('vrole').textContent = d.r;
+      document.getElementById('vav').textContent = d.n.charAt(0);
+      stage.setAttribute('aria-labelledby', 'vt' + i);
+      q.classList.remove('swap'); who.classList.remove('swap');
+    }, 250);
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); t.tabIndex = k === i ? 0 : -1; });
+    restart();
+  }
+  function restart() {
+    clearTimeout(timer); bar.classList.remove('run'); void bar.offsetWidth;
+    if (still || paused) return;
+    bar.style.setProperty('--vdur', '9s'); bar.classList.add('run');
+    timer = setTimeout(function () { show((cur + 1) % V.length); }, 9000);
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { still = true; show(+t.dataset.i); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+      if (!k) return; e.preventDefault(); still = true;
+      var n = (cur + k + V.length) % V.length; show(n); tabs[n].focus();
+    });
+  });
+  stage.addEventListener('mouseenter', function () { paused = true; restart(); });
+  stage.addEventListener('mouseleave', function () { paused = false; restart(); });
+  restart();
 })();
 </script>
 </body>
